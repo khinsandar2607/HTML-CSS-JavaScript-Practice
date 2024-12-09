@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--Css Session-->
+    <style>
+      #box {
+        position: relative;
+        width: 600px;
+        height: 20px;
+        padding: 10px;
+        background-color: skyb1ue;
+        border: 5px solid darkblue;
+      }
+
+      #ball {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        background-color: red;
+      }
+      .btn {
+        margin: 10px;
+        box-shadow: inset 0px 1px 0px 0px #fff6af;
+        background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+        background-color: #ffec64;
+        border-radius: 6px;
+        border: 1px solid #ffaa22;
+        display: inline-block;
+        cursor: pointer;
+        color: #333333;
+        font-family: Arial;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 6px 24px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #ffee66;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="ball"></div>
+    </div>
+    <button class="btn" onClick="start()">Start</button>
+    <button class="btn" onClick="stop()">Stop</button>
+    <!--JavaScript Session-->
+    <script>
+      let ball = document.querySelector("#ball");
+      let left = 0;
+      let direction = "right";
+
+      let interval = setInterval(move, 10);
+
+      /**
+       * Moves the ball element horizontally within the container.
+       * If the direction is "right", the ball moves to the right by increasing the 'left' position.
+       * When the 'left' position exceeds 590, the direction changes to "left".
+       * If the direction is not "right", the ball moves to the left by decreasing the 'left' position.
+       * When the 'left' position is less than 1, the direction changes to "right".
+       * Updates the ball's 'left' style property to reflect its new position.
+       */
+      function move() {
+        if (direction === "right") {
+          left += 1;
+          if (left > 590) {
+            direction = 0;
+          }
+        } else {
+          left -= 1;
+          if (left < 1) {
+            direction = "right";
+          }
+        }
+        ball.style.left = `${left}px`;
+      }
+
+      /**
+       * Starts the animation by setting the interval to 10 milliseconds.
+       */
+      function start() {
+        interval = setInterval(move, 10);
+      }
+
+      /**
+       * Stops the animation by clearing the interval.
+       */
+      function stop() {
+        clearInterval(interval);
+      }
+    </script>
+  </body>
+</html>
