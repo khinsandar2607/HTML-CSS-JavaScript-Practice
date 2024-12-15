@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel Sample</title>
+  </head>
+  <style>
+    h4 {
+      text-align: center;
+      color: darkorchid;
+    }
+    .boxes {
+      width: 500px;
+      margin: 20px auto;
+      padding: 10px;
+      text-align: center;
+    }
+    .box {
+      height: 100px;
+      padding: 10px;
+      margin: 10px;
+    }
+    #box1 {
+      background-color: royalblue;
+    }
+    #box2 {
+      background-color: darkgreen;
+      display: none;
+    }
+    #box3 {
+      background-color: darkorange;
+      display: none;
+    }
+    button {
+      width: 150px;
+      height: 50px;
+      padding: 10px;
+      margin: 10px;
+      font-size: 20px;
+      border: 1px solid darkblue;
+      border-radius: 5px;
+      color: #fff;
+      background-color: darkkhaki;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: blue;
+      border-color: darkorange;
+    }
+  </style>
+  <body>
+    <h4>Carousel Sample</h4>
+    <div class="boxes">
+      <div class="box" id="box1">
+        <p>This is box 1</p>
+      </div>
+      <div class="box" id="box2">
+        <p>This is box 2</p>
+      </div>
+      <div class="box" id="box3">
+        <p>This is box 3</p>
+      </div>
+      <div class="controls">
+        <button id="previous">&laquo; Previous</button>
+        <button id="next">Next &raquo;</button>
+      </div>
+    </div>
+
+    <script>
+      let box = 1;
+      /**
+       * Changes the currently displayed box to the next one in the sequence.
+       * Hides the current box and shows the next box.
+       * If the current box is the last one, it loops back to the first box.
+       */
+      function changeBoxToNext() {
+        document.querySelector(`#box${box}`).style.display = "none";
+        box++;
+        if (box > 3) {
+            box = 1;
+        }
+        document.querySelector(`#box${box}`).style.display = "block";
+      }
+
+      /**
+       * Changes the currently displayed box to the previous one in the sequence.
+       * Hides the current box and shows the previous box.
+       * If the current box is the first one, it loops back to the last box.
+       */
+      function changeBoxToPrevious() {
+        document.querySelector(`#box${box}`).style.display = "none";
+        box--;
+        if (box < 1) {
+          box = 3;
+        }
+        document.querySelector(`#box${box}`).style.display = "block";
+      }
+
+      document.querySelector("#next").onclick = changeBoxToNext;
+      document.querySelector("#previous").onclick = changeBoxToPrevious;
+
+      setInterval(changeBoxToNext, 5000);
+    </script>
+  </body>
+</html>
