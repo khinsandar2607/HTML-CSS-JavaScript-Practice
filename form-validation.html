@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form-Validation</title>
+    <style>
+      .form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 2px;
+      }
+      .input {
+        display: flex;
+        flex-direction: column;
+      }
+      .label {
+        display: none;
+        color: red;
+        font-weight: bold;
+      }
+      #result {
+        font-size: 2em;
+        font-weight: bold;
+      }
+
+      #add {
+        background-color: #4caf50;
+        border: 1px solid green;
+        border-radius: 8px;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      #add:hover {
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add Form</h1>
+    <div class="form">
+      <div class="input">
+        <label class="label" for="num1">Please enter a number</label>
+        <input type="text" id="num1" /><br />
+      </div>
+      <div class="input">
+        <label class="label" for="num2">Please enter b number</label>
+        <input type="text" id="num2" />
+      </div>
+      <p>The Result is :</p>
+      <div id="result"></div>
+    </div>
+    <button id="add">Add</button>
+    <script>
+      /**
+       * Called when the user types into the first input box.
+       * If the input is a valid number, hide the error message.
+       */
+      document.querySelector("#num1").onkeyup = function () {
+        let num1 = parseInt(document.querySelector("#num1").value);
+        if (!isNaN(num1)) {
+          document.querySelector("[for=num1]").style.display = "none";
+        }
+      };
+
+      /**
+       * Called when the user types into the second input box.
+       * If the input is a valid number, hide the error message.
+       */
+
+      document.querySelector("#num2").onkeyup = function () {
+        let num2 = parseInt(document.querySelector("#num2").value);
+        if (!isNaN(num2)) {
+          document.querySelector("[for=num2]").style.display = "none";
+        }
+      };
+
+      /**
+       * Called when the add button is clicked.
+       * Retrieves and parses the values from the input fields as integers.
+       * If either input is not a valid number, displays an error message.
+       * Otherwise, calculates the sum and displays the result.
+       */
+
+      document.querySelector("#add").onclick = function () {
+        let num1 = parseInt(document.querySelector("#num1").value);
+        let num2 = parseInt(document.querySelector("#num2").value);
+
+        if (isNaN(num1)) {
+          document.querySelector("[for=num1]").style.display = "inline";
+        }
+
+        if (isNaN(num2)) {
+          document.querySelector("[for=num2]").style.display = "inline";
+        }
+
+        let result = num1 + num2;
+        if (!isNaN(result)) {
+          document.querySelector("#result").textContent = result;
+        }
+      };
+    </script>
+  </body>
+</html>
