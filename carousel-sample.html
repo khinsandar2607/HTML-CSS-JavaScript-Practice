@@ -3,55 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carousel Sample</title>
+    <title>Document</title>
+    <style>
+      h4 {
+        text-align: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: bold;
+        text-shadow: rgb(127, 127, 255);
+        color: darkorchid;
+        text-shadow: rgb(255, 178, 127);
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+      .boxes {
+        width: 500px;
+        height: 300px;
+        text-align: center;
+      }
+      .box {
+        display: flex;
+        height: 100px;
+        color: blue;
+        justify-content: center;
+        text-decoration: dashed red 2px;
+      }
+      .controls {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        padding: 10px;
+      }
+      button {
+        width: 100px;
+        height: 40px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        color: rgba(58, 3, 238, 0.549);
+        background-color: rgb(120, 174, 244);
+        border: 1px solid rgb(240, 12, 12);
+        border-radius: 5px;
+      }
+      button:hover {
+        color: rgb(0, 0, 184);
+        background-color: rgb(163, 240, 240);
+        cursor: pointer;
+      }
+      #box1 {
+        background-color: rgb(251, 154, 154);
+        display: none;
+      }
+      #box2 {
+        background-color: rgb(143, 226, 143);
+        display: none;
+      }
+      #box3 {
+        background-color: rgb(137, 137, 223);
+      }
+    </style>
   </head>
-  <style>
-    h4 {
-      text-align: center;
-      color: darkorchid;
-    }
-    .boxes {
-      width: 500px;
-      margin: 20px auto;
-      padding: 10px;
-      text-align: center;
-    }
-    .box {
-      height: 100px;
-      padding: 10px;
-      margin: 10px;
-    }
-    #box1 {
-      background-color: royalblue;
-    }
-    #box2 {
-      background-color: darkgreen;
-      display: none;
-    }
-    #box3 {
-      background-color: darkorange;
-      display: none;
-    }
-    button {
-      width: 150px;
-      height: 50px;
-      padding: 10px;
-      margin: 10px;
-      font-size: 20px;
-      border: 1px solid darkblue;
-      border-radius: 5px;
-      color: #fff;
-      background-color: darkkhaki;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: blue;
-      border-color: darkorange;
-    }
-  </style>
   <body>
-    <h4>Carousel Sample</h4>
     <div class="boxes">
+      <h4>Carousel Sample</h4>
       <div class="box" id="box1">
         <p>This is box 1</p>
       </div>
@@ -65,42 +80,41 @@
         <button id="previous">&laquo; Previous</button>
         <button id="next">Next &raquo;</button>
       </div>
-    </div>
-
-    <script>
-      let box = 1;
-      /**
-       * Changes the currently displayed box to the next one in the sequence.
-       * Hides the current box and shows the next box.
-       * If the current box is the last one, it loops back to the first box.
-       */
-      function changeBoxToNext() {
-        document.querySelector(`#box${box}`).style.display = "none";
-        box++;
-        if (box > 3) {
+      <script>
+        let box = 3;
+        document.querySelector(`#box${box}`).style.display = "block";
+        /**
+         * Changes the currently displayed box to the next one in the sequence.
+         * Hides the current box and shows the next box.
+         * If the current box is the last one, it loops back to the first box.
+         */
+        function changeBoxToNext() {
+          document.querySelector(`#box${box}`).style.display = "none";
+          box++;
+          if (box > 3) {
             box = 1;
+          }
+          document.querySelector(`#box${box}`).style.display = "block";
         }
-        document.querySelector(`#box${box}`).style.display = "block";
-      }
+        /**
+         * Changes the currently displayed box to the previous one in the sequence.
+         * Hides the current box and shows the previous box.
+         * If the current box is the first one, it loops back to the last box.
+         */
 
-      /**
-       * Changes the currently displayed box to the previous one in the sequence.
-       * Hides the current box and shows the previous box.
-       * If the current box is the first one, it loops back to the last box.
-       */
-      function changeBoxToPrevious() {
-        document.querySelector(`#box${box}`).style.display = "none";
-        box--;
-        if (box < 1) {
-          box = 3;
+        function changeBoxToPrevious() {
+          document.querySelector(`#box${box}`).style.display = "none";
+          box--;
+          if (box < 1) {
+            box = 3;
+          }
+          document.querySelector(`#box${box}`).style.display = "block";
         }
-        document.querySelector(`#box${box}`).style.display = "block";
-      }
+        document.querySelector("#next").onclick = changeBoxToNext;
+        document.querySelector("#previous").onclick = changeBoxToPrevious;
 
-      document.querySelector("#next").onclick = changeBoxToNext;
-      document.querySelector("#previous").onclick = changeBoxToPrevious;
-
-      setInterval(changeBoxToNext, 5000);
-    </script>
+        setInterval(changeBoxToNext, 5000);
+      </script>
+    </div>
   </body>
 </html>
